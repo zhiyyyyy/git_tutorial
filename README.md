@@ -8,7 +8,7 @@
 `git add .`
 * 提交更新  
 `git commit -m "commit information"`
-* 一步暂存加提交，未跟踪文件还需先add  
+* 一步暂存加提交，但未跟踪文件需先add  
 `git commit -a -m "commit information`
 * 覆盖提交：如果只想修改提交信息则加上括号内容；如果想添加一个新的暂存，根据是否需要修改提交信息选择是否加上括号内容  
 `git commit --amend (-m "new commit information“)`
@@ -29,3 +29,18 @@
     doc/*.txt
     # 忽略 doc/ 目录及其所有子目录下的 .pdf 文件
     doc/**/*.pdf
+## 撤销操作
+* 撤销首次提交  
+`git update-ref -d HEAD`
+* 取消暂存，不指定文件则取消所有；HEAD可选，但从未提交时会报错；已有提交加不加HEAD都一样  
+`git reset (HEAD) (<file>)`
+* 从暂存区删除但保留文件，文件变为未跟踪  
+`git rm --cached <file>`
+* 回退版本：^个数表示回退版本次数，^^^表示回退上上上个版本；或用数字表示 HEAD^^ 等同于 HEAD~2；只回退提交和暂存记录，工作区文件不变；--hard会连同工作区一起回退，**慎用！！！**  
+`git reset (--hard) HEAD^`
+* 恢复指定文件到最新的提交状态，丢弃所有**未提交**的更改；”点“表示所有  
+`git restore <file>` `git restore .`
+* 将文件恢复到特定提交commit的状态，用想要的提交版本号替代commit（去掉尖括号）  
+`git restore --source=<commit> <file>`
+## 删除仓库
+`rm -rf .git`
