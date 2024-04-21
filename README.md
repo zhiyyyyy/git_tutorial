@@ -44,3 +44,20 @@
 `git restore --source=<commit> <file>`
 ## 删除仓库
 `rm -rf .git`
+## 远程仓库创建、关联与更新
+* 建立本地仓库与远程仓库链接  
+`git remote add origin git@github.com:zhiyyyyy/git_tutorial.git`
+* 从远程分支获取代码并合并本地当前分支或指定分支的版本，是git fetch和git merge的合并操作  
+`git pull origin master` `git pull origin master:<branch>` 
+  ````
+  # 在本地新建一个temp分支，并将远程origin仓库的master分支代码下载到本地temp分支
+  git fetch origin master:tmp
+  # 来比较本地代码与刚刚从远程下载下来的代码的区别
+  git diff tmp
+  # 合并temp分支到本地的master分支
+  git merge tmp
+  # 如果不想保留temp分支 可以用这步删除
+  git branch -d temp
+  ````
+* 本地仓库推送至远程仓库，--force强制推送，即使先前未git pull  
+`git push -u origin master` `git push --force origin master`
